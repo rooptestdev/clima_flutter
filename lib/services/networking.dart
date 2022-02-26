@@ -10,11 +10,12 @@ class NetworkHelper {
 
     if (response.statusCode == 200) {
       String data = response.body;
-      print(data);
-      var weatherId = jsonDecode(data)['weather'][0]['id'];
-      var temperature = jsonDecode(data)['main']['temp'];
-      var city = jsonDecode(data)['name'];
-      print('$weatherId, $temperature, $city');
+      // print(data);
+      var weatherData = jsonDecode(data);
+      // var condition = weatherData['weather'][0]['id'];
+      // var temperature = weatherData['main']['temp'];
+      // var city = weatherData['name'];
+      // print('$condition, $temperature, $city');
 
       return jsonDecode(data);
     } else {
