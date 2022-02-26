@@ -7,7 +7,7 @@ class LocationScreen extends StatefulWidget {
   const LocationScreen({Key? key, required this.locationWeather})
       : super(key: key);
 
-  final locationWeather;
+  final dynamic locationWeather;
 
   @override
   _LocationScreenState createState() => _LocationScreenState();
@@ -72,20 +72,26 @@ class _LocationScreenState extends State<LocationScreen> {
                       var weatherData = await weather.getLocationWeather();
                       updateUI(weatherData);
                     },
-                    child: Icon(
+                    child: const Icon(
                       Icons.near_me,
                       size: 50,
                       color: Colors.white,
                     ),
                   ),
                   TextButton(
-                    onPressed: () {
-                      Navigator.push(context,
+                    onPressed: () async {
+                      var textName = await Navigator.push(context,
                           MaterialPageRoute(builder: (context) {
                         return CityScreen();
                       }));
+                      print(textName);
+                      if (textName != null) {
+                        var weatherData =
+                            await weather.getCityWeather(textName);
+                        updateUI(weatherData);
+                      }
                     },
-                    child: Icon(
+                    child: const Icon(
                       Icons.location_city,
                       size: 50,
                       color: Colors.white,
